@@ -1,7 +1,25 @@
 from flask import Flask, request, redirect
+from flask.ext.sqlalchemy import SQLAlchemy
 import twilio.twiml
+
  
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    phoneNumber = db.Column(db.Integer, unique=True)
+
+    def __init__(self, name, phoneNumber):
+        self.username = name
+        self.phoneNumber = phoneNumber
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+
 name = "Text2Learn"
 subscribeMessage = "make it easier"
 errorMessage = "To subscribe, please reply with MAKE IT EASIER"
