@@ -12,6 +12,8 @@ def parseSubscription(inp):
 	   to subscribe to our Text2Learn."""
 
 	l = inp.lower()
+	l = l.rstrip()
+	l = l.lstrip()
 	
 	b = (l == subscribeMessage)
 	return b
@@ -22,7 +24,8 @@ def parseSubscription(inp):
 @app.route("/", methods=['GET', 'POST'])
 def subscribe():
 	"""Reads the incoming messages to see who is subscribing."""
-	automatic_subscription = "You are now subscribed to " + name +". To learn the key functions, text HELP back."
+
+	automatic_subscription = "You are now subscribed to " + name + ". To learn the key functions, text HELP back."
 	body_message = request.values.get('Body', None)
 	person_number = request.values.get('From', None)
 	if parseSubscription(body_message):
