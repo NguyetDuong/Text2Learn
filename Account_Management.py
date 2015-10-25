@@ -71,7 +71,8 @@ def del_subscribe(user):
 #----To Use: send_problem(user account number, either learn spanish or math string)
 #----Returns: string that contains the problem
 def send_problem(user, subject):
-    qNum = 0
+    #init variables 
+	qNum = 0
     maxTable=-1
     sendQ =''
     category ='null'
@@ -79,10 +80,9 @@ def send_problem(user, subject):
     cursor = con.cursor() 
     c = lite.connect('text2learn.db')
     cur = c.cursor()
-
+	
+	#checks for what subject user wishes to learn and their level
     level = str((MAXPOINTS/100)-1)
-    # print subject
-
     if subject == 'learn spanish':
         cursor.execute("SELECT SpanishPoint FROM account WHERE UserID = ?", (user,))
         sPnt = int(''.join(map(str,cursor.fetchone())))
@@ -99,8 +99,8 @@ def send_problem(user, subject):
             level = str(int(math.floor(mPnt)))
         category = 'math'+level
         subject = 'math'
-	#print level
-    # print category
+    
+	#gets question from the database, add appropiate data to user account and returns question string
     cur.execute("SELECT * FROM "+category)
     for row in cur:
         maxTable=maxTable+1
@@ -115,19 +115,21 @@ def send_problem(user, subject):
     con.close() 
     c.commit()
     c.close() 
-    
     return sendQ    
 
 #--- Compares user answer with quiz database and returns win/lose conditions based on comparison ------------------------
 #----To Use: recieve_answer(user account number, answer)
 #----Return: String with win/loss condition message
 def recieve_answer(user, answer):
-    finString = "EMPTY STRING"
+    #init variable
+	finString = "EMPTY STRING"
     reset = None
     con = lite.connect('account.db')
     cursor = con.cursor() 
     c = lite.connect('text2learn.db')
     cur = c.cursor()
+	
+	#grabs question data from user
     cursor.execute("SELECT SubjectID FROM account WHERE UserID=?", (user,))
     sID = ''.join(map(str,cursor.fetchone()))
     cursor.execute("SELECT LevelID FROM account WHERE UserID=?", (user,))
@@ -136,8 +138,10 @@ def recieve_answer(user, answer):
     pID = int(''.join(map(str,cursor.fetchone())))
     cur.execute("SELECT Answer FROM "+lID+" WHERE Id = ?", (pID,))
     answerDB = ''.join(map(str,cur.fetchone()))
+	
     finString = "Sorry! Your answer of "+answer+" was incorrect. The correct answer was "+answerDB+". Don't give up! Try again soon!"
     lvlString = ""
+	#if answer is correct, return string changes to win condition and adds points to user account
     if answerDB == answer:
         if sID == 'spanish':
             cursor.execute("SELECT SpanishPoint FROM account WHERE UserID = ?", (user,))
@@ -153,19 +157,17 @@ def recieve_answer(user, answer):
 			    mPnt = mPnt + 10
             checkPnt = mPnt
             cursor.execute("UPDATE account SET MathPoint = ? WHERE UserID = ?", (mPnt,user,))
-        checkPnt = checkPnt/100
+        #checks whether user has leveled up
+		checkPnt = checkPnt/100
         level = str(int(math.floor(checkPnt)))
-        finString ="Congratlations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
+        finString ="\nCongratulations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
         level=int(level)
         if level<3:
             level=str(level)
             checkUpdate = sID+level
-            #print checkUpdate
-            #print lID
-            print "HERE0"
             if lID != checkUpdate:
 		        lvlString = "\nAlso, you have earned enough points to level up to Level "+level+" "+sID+"! Congratlations! Keep it up!"
-            finString = "Congratulations! Your answer of "+answer+" was correct! You earned 10 points to the"+sID+" categories! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
+            finString = "Your answer of "+answer+" was correct!\n You earned 10 points in the "+sID+" category! "+lvlString+"\n\nSend 'check points' to see how many points you've earned in total!"
 	    
 	cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (reset,user,))
     cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))
@@ -180,11 +182,13 @@ def recieve_answer(user, answer):
 #----To Use: check_points(user account number)
 #----Return: String containing current user point count for each subject
 def check_points(user):
-    con = lite.connect('account.db')
+    #init variable
+	con = lite.connect('account.db')
     cursor = con.cursor()
     maxxString=""	
     maxString=''
     checkPnt = 0
+	
     cursor.execute("SELECT MathPoint FROM account WHERE UserID = ?", (user,))
     mPnt = (''.join(map(str,cursor.fetchone())))
     checkPnt = int(mPnt)
@@ -197,7 +201,7 @@ def check_points(user):
     if checkPnt==MAXPOINTS:
 	    maxxString=" You are at max level for: "
 	    maxString=maxString+'\n Spanish'	
-    rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points! Keep up the good work!"+maxxString+maxString	
+    rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points!\n Keep up the good work!"+maxxString+maxString	
     con.commit()
     con.close()
     return rString
