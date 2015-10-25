@@ -1,25 +1,9 @@
 from flask import Flask, request, redirect
-from flask.ext.sqlalchemy import SQLAlchemy
 import twilio.twiml
+import sqlite3 as lite
+import sys
 
- 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    phoneNumber = db.Column(db.Integer, unique=True)
-
-    def __init__(self, name, phoneNumber):
-        self.username = name
-        self.phoneNumber = phoneNumber
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-
 name = "Text2Learn"
 subscribeMessage = "make it easier"
 errorMessage = "To subscribe, please reply with MAKE IT EASIER"
@@ -32,7 +16,6 @@ def parseSubscription(inp):
 	l = inp.lower()
 	l = l.rstrip()
 	l = l.lstrip()
-	
 	b = (l == subscribeMessage)
 	return b
 
@@ -48,6 +31,12 @@ def subscribe():
 	person_number = request.values.get('From', None)
 	if parseSubscription(body_message):
 		resp = twilio.twiml.Response()
+		con = lite.connect('subscribers.db')
+    	cur = con.cursor()
+    	cur.execute("DROP TABLE IF EXISTS Subscribers")
+    	cur.execute("CREATE TABLE Subscribers(PhoneNumber TEXT")
+    	cur.execute("INSERT INTO Subscribers VALUES(?)", person_number)	
+    	con.close()
 		resp.message(automatic_subscription)
 		subscribers.append(person_number)
 	else:
