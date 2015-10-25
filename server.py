@@ -34,7 +34,7 @@ def parseSubscription(inp):
 	return b
 
 
-# App is being run at this point, all variables & methods 
+# App is being run at this point, all variables & methods
 # not related to app should be above
 
 @app.route("/", methods=['GET', 'POST'])
@@ -57,19 +57,9 @@ def start():
 		cur = con.cursor()
 		cur.execute("SELECT * FROM Subscribers")
 		rows = cur.fetchall()
-		#print cur.description
-		print("got into the search")
-
 		for row in rows:
-			print("we are comparing: ")
-			print("p#: " + person_number)
-			print("row data: " +str(row[0]))
-			print("--------------")
 			if str(row[0]) == person_number:
-				#print(str(row[0]))
-				#cur.execute("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
-				print("we are checking for txt back")
 				"""This is the beginning of redirecting the messages in order for the
 	   			user to achieve the correct message."""
 	   			if translation == "help":
@@ -84,9 +74,7 @@ def start():
 	   				return points(person_number)
 	   			else:
 	   				return invalid(person_number)
-	print("where")
 	con.close()
-	print("done yet?")
 	return subscribe(body_message, person_number)
 
 	#### END ####
@@ -95,8 +83,6 @@ def start():
 @app.route("/help", methods=['GET', 'POST'])
 def help(person_number):
 	"""Tells the user what to type for which subject to learn."""
-
-	print("went into /help")
 	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." \
 	" To learn math, please reply with: LEARN MATH. If you wish to know how many points you have, reply with CHECK POINTS." \
 	"To find out more about us and our product, please visit http://goo.gl/Mrp3QK." \
@@ -110,7 +96,6 @@ def help(person_number):
 
 @app.route("/invalid", methods=['GET', 'POST'])
 def invalid(person_number):
-	print("went into /invalid")
 	reply = "It seems like you have given an invalid input. Please reply with: HELPME (one word) for valid inputs."
 	message = client.messages.create(
 			body = reply,
@@ -120,7 +105,6 @@ def invalid(person_number):
 
 @app.route("/spanish", methods=['GET', 'POST'])
 def spanish(person_number):
-	print("went into /spanish")
 	question = send_problem(person_number, "learn spanish")
 	reply = str(question[0]) + "\nRemember to begin your answer with ANSWER."
 
@@ -132,7 +116,6 @@ def spanish(person_number):
 
 @app.route("/math", methods=['GET', 'POST'])
 def math(person_number):
-	print("went into /math")
 	question = send_problem(person_number, "learn math")
 	reply = str(question[0]) + "\nRemember to begin your answer with ANSWER"
 
@@ -144,10 +127,7 @@ def math(person_number):
 
 @app.route("/answer", methods=['GET', 'POST'])
 def answer(person_number, guess):
-	print("went into /answer")
-	print("user answer: " + guess[1])
 	response = recieve_answer(person_number, guess[1])
-	print(response)
 	reply = str(response)
 
 	message = client.messages.create(
@@ -158,7 +138,6 @@ def answer(person_number, guess):
 
 @app.route("/points", methods=['GET', 'POST'])
 def points(person_number):
-	print("went into /points")
 	response = check_points(person_number)
 	reply = str(response)
 
@@ -179,12 +158,8 @@ def subscribe(body_message, person_number):
 		con = lite.connect('subscribers.db')
 		con.text_factory = str
 		cur = con.cursor()
-		print("person_number is:  " + person_number)
-		#cur.execute("CREATE TABLE Subscribers(subscriber TEXT)")
-		#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
-		print("added subscriber")
+		#cur.execute("CREATE TABLE Subscribers(PhoneNumber TEXT)")
 		cur.execute("INSERT INTO Subscribers VALUES (?);", (person_number,))
-		#cur.execute("SELECT * FROM Subscribers")
 		con.commit()
 		con.close()
 

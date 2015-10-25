@@ -76,24 +76,19 @@ def send_problem(user, subject):
     cursor = con.cursor() 
     c = lite.connect('text2learn.db')
     cur = c.cursor()
-    # print subject
     if subject == 'learn spanish':
         category = 'spanish'
     elif subject == 'learn math':
         category = 'math'
-    # print category
     cur.execute("SELECT * FROM "+category)
     for row in cur:
         maxTable=maxTable+1
-        #print cur.fetchall()
-    # print maxTable
     qNum = random.randint(0,maxTable)
     cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (qNum,user,))
     cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (category,user,))
     cur.execute("SELECT Question FROM "+category+" WHERE Id=?",(qNum,))
     sendQ= cur.fetchone()
     cursor.execute("SELECT * FROM account")
-    # print(cursor.fetchall())
     con.commit()
     con.close() 
     c.commit()
@@ -115,7 +110,6 @@ def recieve_answer(user, answer):
     sID = ''.join(map(str,cursor.fetchone()))
     cursor.execute("SELECT ProblemID FROM account WHERE UserID = ?", (user,))
     pID = int(''.join(map(str,cursor.fetchone())))
-    print sID
     cur.execute("SELECT Answer FROM "+sID+" WHERE Id = ?", (pID,))
     answerDB = ''.join(map(str,cur.fetchone()))
     finString = "Sorry! Your answer of "+answer+" was incorrect. The correct answer was "+answerDB+". Don't give up! Try again soon!"
