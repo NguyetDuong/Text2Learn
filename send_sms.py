@@ -1,6 +1,6 @@
 ## This is written for intitial testing.
 ## Primary offline, used to send messages to all "subscribers."
-## Contributer: Leslie Li
+## Contributer: Hui Shi Li
 
 from twilio.rest import TwilioRestClient
 from wordnik import *
@@ -9,36 +9,6 @@ import sys
 apiUrl = 'http://api.wordnik.com/v4'
 apiKey = '2c2aa817225a9b275e2170c366304d437582c298f11a89644'
 wclient = swagger.ApiClient(apiKey, apiUrl)
-
-
-##################################
-# con = lite.connect('text2learn.db')
-
-# with con:
-# 	curr = con.cursor()
-# 	cur.execute("SELECT * FROM spanish")
-
-# 	rows = cur.fetchall()
-
-# 	for row in rows:
-# 		print row
-
-
-#if needed to convert phone # to e164
-#def convert_to_e164(raw_phone):
-#    if not raw_phone:
-#        return
-
-#    if raw_phone[0] == '+':
-        # Phone number may already be in E.164 format.
-#        parse_type = None
-#    else:
-        # If no country code information present, assume it's a US number
-#        parse_type = "US"
-
-#    phone_representation = phonenumbers.parse(raw_phone, parse_type)
-#    return phonenumbers.format_number(phone_representation,
-#        phonenumbers.PhoneNumberFormat.E164)
 
 # To find these visit https://www.twilio.com/user/account
 ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
@@ -59,14 +29,8 @@ wordApi = WordApi.WordApi(wclient)
 wotd_defs = wordApi.getDefinitions(wotd)
 wotd_def = wotd_defs[0].text
 
-#contacts hash
-#'mimi' : "+14153749191"
-
-#contacts = {'gavin' : '+16507769918',
-#'joyce' : "+15306018016", 'brian' : '+14158718763', 'leslie': '+14155741183' }
-
-contacts = {'leslie': '+14155741183', }
-
+#contacts hash: key:name value:phone_number
+#contacts = {}
 
 #used to send SMS
 def send_SMS_wotd():
@@ -95,11 +59,6 @@ def get_SMS():
 	"""Add received SMS to hash -- msg_received."""
 	for msg in client.messages.list():
 		#check for incoming sms and add to hash
-		######USED FOR TESTING##########
-		# print "\nMSID: " + msg.sid
-		# print "body: " + msg.body
-		# print "from: " + msg.from_
-		################################
 
 		#delete prev SMS from same sender	
 		if(msg.from_ != base):
@@ -130,6 +89,5 @@ def delete_sSMS():
 def print_rSMS():
 	"""Print received SMS."""
 	#key = phone #, val = body of msg
-	print "\n"
 	for k in msg_received.keys():
 		print "From: " + k + " Body: " + msg_received[k]

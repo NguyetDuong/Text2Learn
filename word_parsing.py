@@ -49,13 +49,3 @@ def user_input_analysis(arr):
 		return "input"
 
 
-def parseSubscription(inp):
-	"""Takes in a String, and will parse it to see if it contains the phrase
-	   to subscribe to our Text2Learn."""
-
-	l = inp.lower()
-	l = l.rstrip()
-	l = l.lstrip()
-	
-	b = (l == subscribeMessage)
-	return b
