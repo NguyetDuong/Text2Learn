@@ -1,12 +1,52 @@
 
 spanish0
-What is hello in Spanish?
+What is 'zero' in Spanish?
+cero
+What is 'one' in Spanish?
+uno
+What is 'two' in Spanish?
+dos
+What is 'three' in Spanish?
+tres
+What is 'four' in Spanish?
+cuarto
+What is 'five' in Spanish?
+cinco
+What is 'six' in Spanish?
+seis
+What is 'seven' in Spanish?
+siete
+What is 'eight' in Spanish?
+ocho
+What is 'nine' in Spanish?
+nueve
+What is 'red' in Spanish?
+rojo
+What is 'orange' in Spanish?
+naranja
+What is 'yellow' in Spanish?
+amarillo
+What is 'green' in Spanish?
+verde
+What is 'blue' in Spanish?
+azul
+What is 'purple' in Spanish?
+morado
+What is 'black' in Spanish?
+negro
+What is 'white' in Spanish?
+blanco
+What is 'hello' in Spanish?
 hola
-What is good in Spanish?
+What is 'goodbye' in Spanish?
+adios
+What is 'good' in Spanish?
 buenas
-What is dog in Spanish?
+What is 'dog' in Spanish?
 perro
-How do you say thank you in Spanish?
+What is 'cat' in Spanish?
+gato
+How do you say 'thank you' in Spanish?
 gracias
 
 math0
@@ -22,11 +62,81 @@ math0
 98
 
 spanish1
-Spell out '28' in Spanish!
-veintiocho
-What is bread in Spanish?
+Spell out '10' in Spanish.
+diez
+Spell out '20' in Spanish.
+veinte
+Spell out '30' in Spanish.
+treinta
+Spell out '40' in Spanish.
+cuarenta
+Spell out '50' in Spanish.
+cincuenta
+Spell out '60' in Spanish.
+sesenta
+Spell out '70' in Spanish.
+setenta
+Spell out '80' in Spanish.
+ochenta
+Spell out '90' in Spanish.
+noventa
+Spell out '100' in Spanish.
+cien
+What is 'rice' in Spanish?
+arroz
+What is 'hamburger' in Spanish?
+hamburguresa
+What is 'egg' in Spanish?
+huevo
+What is 'french fries' in Spanish?
+papas fritas
+What is 'grapes' in Spanish?
+uvas
+What is 'apple' in Spanish?
+manzana
+What is 'bread' in Spanish?
 pan
-What is programmer in Spanish?
+What is 'soda' in Spanish?
+refresco
+What is 'water' in Spanish?
+agua
+What is 'milk' in Spanish?
+leche
+What is 'soup' in Spanish?
+sopa
+What is 'chicken' in Spanish?
+pollo
+What is 'pork' in Spanish?
+cerdo
+What is 'school' in Spanish?
+escuela
+What is 'library' in Spanish?
+biblioteca
+What is 'store' in Spanish?
+tienda
+What is 'resturant' in Spanish?
+restaurante
+What is 'supermarket' in Spanish?
+supermercado
+What is 'office' in Spanish?
+oficina
+What is 'house' in Spanish?
+casa
+What is 'airport' in Spanish?
+aeropuerto
+What is 'beach' in Spanish?
+playa
+What is 'hospital' in Spanish?
+hospital
+What is 'church' in Spanish?
+iglesia
+What is 'movie theatre' in Spanish?
+cine
+What is 'swimming pool' in Spanish?
+piscina
+What is 'park' in Spanish?
+parque
+What is 'programmer' in Spanish?
 programador
 
 math1
@@ -42,6 +152,24 @@ math1
 190
 
 spanish2
+Spell out '11' in Spanish.
+once
+Spell out '13' in Spanish.
+trece
+Spell out '15' in Spanish.
+quince
+Spell out '17' in Spanish.
+diecisiete
+Spell out '19' in Spanish.
+diecinueve
+Spell out '21' in Spanish.
+veintiuno
+Spell out '24' in Spanish.
+veinticuatro
+Spell out '27' in Spanish.
+veintisiete
+Spell out '28' in Spanish.
+veintiocho
 What is the verb 'to walk' in Spanish?
 caminar
 What is the verb 'to have' in Spanish?
@@ -54,6 +182,52 @@ what is the verb 'to see' in Spanish?
 ver
 What is the verb 'to eat' in Spanish?
 comer
+What is the verb 'to give' in Spanish?
+dar
+What is the verb 'to know' in Spanish?
+saber
+What is the verb 'to want' in Spanish?
+querer
+What is the verb 'to speak' in Spanish?
+hablar
+What is the verb 'to carry' in Spanish?
+llevar
+What is the verb 'to draw' in Spanish?
+dibujar
+What is the verb 'to program' in Spanish?
+programar
+What is the verb 'to call' in Spanish?
+llamar
+What is the verb 'to think' in Spanish?
+pensar
+What is the verb 'to leave' in Spanish?
+salir
+What is the verb 'to live' in Spanish?
+viver
+What is the verb 'to count' in Spanish?
+contar
+What is the verb 'to work' in Spanish?
+trabajar
+What is the verb 'to write' in Spanish?
+escribir
+What is the verb 'to receive' in Spanish?
+recibir
+What is the verb 'to finish in Spanish?
+terminar
+What is the verb 'to read' in Spanish?
+leer
+What is the verb 'to play' in Spanish?
+jugar
+What is the verb 'to open' in Spanish?
+abrir
+What is the verb 'to study' in Spanish?
+estudiar
+What is the verb 'to run' in Spanish?
+correr
+What is the verb 'to help' in Spanish?
+ayudar
+What is the verb 'to listen' in Spanish?
+escuchar
 
 math2
 10*12=?
