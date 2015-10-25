@@ -155,7 +155,7 @@ def recieve_answer(user, answer):
             cursor.execute("UPDATE account SET MathPoint = ? WHERE UserID = ?", (mPnt,user,))
         checkPnt = checkPnt/100
         level = str(int(math.floor(checkPnt)))
-        finString ="Congratlations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
+        #finString ="Congratlations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
         if level<3:
             checkUpdate = sID+level
             level=int(level)
@@ -164,7 +164,7 @@ def recieve_answer(user, answer):
             #print lID
             if lID != checkUpdate:
 		        lvlString = "\nAlso, you have earned enough points to level up to Level "+level+" "+sID+"! Congratlations! Keep it up!"
-            finString = "Congratulations! Your answer of "+answer+" was correct! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
+        finString = "Congratulations! Your answer of "+answer+" was correct! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
 	    
 	cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (reset,user,))
     cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))
