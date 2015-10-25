@@ -1,5 +1,5 @@
 ## This is the main file. It receives the messages, comprehends them, and direct them appropriately
-## Contributers: Nguyet Duong, Leslie Li
+## Contributers: Nguyet Duong, Hui Shi Li
 
 from flask import Flask, request, redirect
 from twilio.rest import TwilioRestClient

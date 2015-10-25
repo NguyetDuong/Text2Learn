@@ -1,6 +1,6 @@
 ## This is written for intitial testing.
 ## Primary offline, used to send messages to all "subscribers."
-## Contributer: Leslie Li
+## Contributer: Hui Shi Li
 
 from twilio.rest import TwilioRestClient
 from wordnik import *
