@@ -2,7 +2,7 @@
 HackingEdu2015 Submission 
 
 A project created by Leslie Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar. 
-Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn)
+Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn).
 
 ### Images 
 <img src="screenshots/img1.jpg" alt="Drawing" style="width: 20%;"/> 
@@ -12,6 +12,7 @@ Website for the project can be found here: [link](nguyetduong.github.io/Text2Lea
 We are basing our invention off of HackingEDU 2015's theme: education. Our goal is to overcome the barriers of 
 learning by making knowledge more accessible at the tip of anyone's fingertips. We are going back to the basic:
 no more mobile apps, no more native web apps. Just simple SMS messages used to provide people with basic education. 
+Our project will be open source for everyone to contribute to other's learning. 
 
 ### How It Works
 In a simple sense, all we are doing is:
