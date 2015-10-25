@@ -72,14 +72,11 @@ try:
                 QuizArr=[None]*lineNum
                 for n in range(0, lineNum):
                     QuizArr[n] =(categories,(n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
-<<<<<<< HEAD
                     #print (QuizArr[n])
                 #print quizObject.qArray[n]
                 #print categories
                 #cur.execute('''DROP TABLE IF EXISTS '''+categories)
-=======
                 print categories
->>>>>>> origin/master
                 cur.execute("DROP TABLE IF EXISTS "+categories)
             	
 				#The table holds the question ID, the question itself, and then the answer

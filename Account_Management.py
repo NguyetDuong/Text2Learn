@@ -79,11 +79,10 @@ def send_problem(user, subject):
     cursor = con.cursor() 
     c = lite.connect('text2learn.db')
     cur = c.cursor()
-<<<<<<< HEAD
+
     level = str((MAXPOINTS/100)-1)
     # print subject
-=======
->>>>>>> origin/master
+
     if subject == 'learn spanish':
         cursor.execute("SELECT SpanishPoint FROM account WHERE UserID = ?", (user,))
         sPnt = int(''.join(map(str,cursor.fetchone())))
@@ -93,7 +92,6 @@ def send_problem(user, subject):
         category = 'spanish'+level
         subject = 'spanish'
     elif subject == 'learn math':
-<<<<<<< HEAD
         cursor.execute("SELECT MathPoint FROM account WHERE UserID = ?", (user,))
         mPnt = int(''.join(map(str,cursor.fetchone())))
         if mPnt != MAXPOINTS:
@@ -103,9 +101,7 @@ def send_problem(user, subject):
         subject = 'math'
 	#print level
     # print category
-=======
         category = 'math'
->>>>>>> origin/master
     cur.execute("SELECT * FROM "+category)
     for row in cur:
         maxTable=maxTable+1
@@ -139,11 +135,8 @@ def recieve_answer(user, answer):
     lID = ''.join(map(str,cursor.fetchone()))
     cursor.execute("SELECT ProblemID FROM account WHERE UserID = ?", (user,))
     pID = int(''.join(map(str,cursor.fetchone())))
-<<<<<<< HEAD
     cur.execute("SELECT Answer FROM "+lID+" WHERE Id = ?", (pID,))
-=======
     cur.execute("SELECT Answer FROM "+sID+" WHERE Id = ?", (pID,))
->>>>>>> origin/master
     answerDB = ''.join(map(str,cur.fetchone()))
     finString = "Sorry! Your answer of "+answer+" was incorrect. The correct answer was "+answerDB+". Don't give up! Try again soon!"
     lvlString = ""
