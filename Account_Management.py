@@ -199,7 +199,7 @@ def check_points(user):
     sPnt = (''.join(map(str,cursor.fetchone())))
     checkPnt = int(sPnt)
     if checkPnt==MAXPOINTS:
-	    maxxString=" You are at max level for: "
+	    maxxString="\nYou are at max level for: "
 	    maxString=maxString+'\n Spanish'	
     rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points!\n Keep up the good work!"+maxxString+maxString	
     con.commit()
