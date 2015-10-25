@@ -66,50 +66,34 @@ try:
 		#if there has already been one table's worth of data scanned into 
 		#the quiz object, a table will be created 
         if nextLine=='\n':
-            #print 'NEW LABEL'
-			
             #A table's worth of data has been scanned, make table -------------
             if lineNum>0:
-                #print 'PUTTING IN TABLE'
                 categories = ''.join(quizObject.title).rstrip('\n')
                 QuizArr=[None]*lineNum
                 for n in range(0, lineNum):
                     QuizArr[n] =(categories,(n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
+<<<<<<< HEAD
                     #print (QuizArr[n])
                 #print quizObject.qArray[n]
                 #print categories
                 #cur.execute('''DROP TABLE IF EXISTS '''+categories)
+=======
+                print categories
+>>>>>>> origin/master
                 cur.execute("DROP TABLE IF EXISTS "+categories)
-                #print "making table"
-				
+            	
 				#The table holds the question ID, the question itself, and then the answer
 				#in each column. When grabbing data from the database, it should (hopefully!)
 				#have it's datatype already set.
                 cur.execute("CREATE TABLE "+categories+"(Subject TEXT, Id INT, Question TEXT, Answer TEXT)")  
                 cur.executemany("INSERT INTO "+categories+" VALUES(?, ?, ?, ?)", QuizArr)
-            #print "finished if statement"
-            #cur.execute("SELECT * FROM math")
-            #print cur.rowcount
-            #print "+++++++++++++++++++++++++++"
-            #print cur.fetchone()
-            #print "/+++++++++++++++++++++++++"
-            #lineNum=0
-            #print "finished if statement"
-            #cur.execute("SELECT * FROM spanish")
-            #print cur.rowcount
-            #print "+++++++++++++++++++++++++++"
-            #print cur.fetchone()
-            #print "/+++++++++++++++++++++++++"
-			
+            
 			#Read in new table's label and reset table variables --------------
             lineNum=0
             quizName=file.readline()
             quizObject.title = quizName
-            #print 'GETTING QUIZ NAME: '+quizObject.title
-            #print quizObject.title 
 		#Reading in the questions and answers into the quiz object arrays -----
         else:
-            #print 'ENTERING ELSE'
             if x==1:
                 x = 2
 				#Save line from file into question array ----------------------
