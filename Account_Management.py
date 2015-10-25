@@ -101,7 +101,6 @@ def send_problem(user, subject):
         subject = 'math'
 	#print level
     # print category
-        category = 'math'
     cur.execute("SELECT * FROM "+category)
     for row in cur:
         maxTable=maxTable+1
@@ -136,7 +135,6 @@ def recieve_answer(user, answer):
     cursor.execute("SELECT ProblemID FROM account WHERE UserID = ?", (user,))
     pID = int(''.join(map(str,cursor.fetchone())))
     cur.execute("SELECT Answer FROM "+lID+" WHERE Id = ?", (pID,))
-    cur.execute("SELECT Answer FROM "+sID+" WHERE Id = ?", (pID,))
     answerDB = ''.join(map(str,cur.fetchone()))
     finString = "Sorry! Your answer of "+answer+" was incorrect. The correct answer was "+answerDB+". Don't give up! Try again soon!"
     lvlString = ""
@@ -166,7 +164,7 @@ def recieve_answer(user, answer):
             #print lID
             if lID != checkUpdate:
 		        lvlString = "\nAlso, you have earned enough points to level up to Level "+level+" "+sID+"! Congratlations! Keep it up!"
-            finString = "Congratulations! Your answer of "+answer+" was correct! You earned 10 more points for the "+sID+" category!"+lvlString+"\nSend 'check points' to see how many points you earned!"
+            finString = "Congratulations! Your answer of "+answer+" was correct! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
 	    
 	cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (reset,user,))
     cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))
