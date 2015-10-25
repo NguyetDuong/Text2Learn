@@ -57,7 +57,7 @@ def start():
 			print(str(row[0]))
 			if str(row[0] == person_number):
 				#print(str(row[0]))
-				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
+				#cur.execute("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
 				return help(person_number)
 		
