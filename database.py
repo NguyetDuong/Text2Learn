@@ -2,6 +2,7 @@
 #Python script used to generate the database of all the quizzes and answers
 #------------------------------------------------------------------------------
 #Database file name: text2learn.db
+#How to run: python database.py input.txt
 # Ordering of table:
 # | Id | Question | Answer|
 # Current tables:
