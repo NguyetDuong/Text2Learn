@@ -3,11 +3,26 @@
 #------------------------------------------------------------------------------
 #Database file name: text2learn.db
 #How to run: python database.py input.txt
-# Ordering of table:
-# | Id | Question | Answer|
-# Current tables:
-# math
-# spanish
+#What it does: This program reads in an input file that has a subject name
+#followed by questions & answers and makes a table that has all 
+#questions and their answers
+#Read in file format: (refer to input.txt for example)
+#
+#subjectName
+#question
+#answer
+#question
+#answer ...
+#
+#subjectName
+#question
+#answer
+#question
+#answer ...
+#
+#
+#Ordering of table:
+# | Subject | Problem ID | Question | Answer |
 #------------------------------------------------------------------------------
 #CONTRIBUTERS: Sarah Borland, Joyce Scalettar, Hui Shi
 
@@ -53,15 +68,15 @@ try:
         if nextLine=='\n':
             #print 'NEW LABEL'
 			
-			#A table's worth of data has been scanned, make table -------------
+            #A table's worth of data has been scanned, make table -------------
             if lineNum>0:
                 #print 'PUTTING IN TABLE'
+                categories = ''.join(quizObject.title).rstrip('\n')
                 QuizArr=[None]*lineNum
                 for n in range(0, lineNum):
-                    QuizArr[n] =((n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
+                    QuizArr[n] =(categories,(n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
                     #print (QuizArr[n])
                 #print quizObject.qArray[n]
-                categories = ''.join(quizObject.title)
                 #print categories
                 #cur.execute('''DROP TABLE IF EXISTS '''+categories)
                 cur.execute("DROP TABLE IF EXISTS "+categories)
@@ -70,8 +85,8 @@ try:
 				#The table holds the question ID, the question itself, and then the answer
 				#in each column. When grabbing data from the database, it should (hopefully!)
 				#have it's datatype already set.
-                cur.execute("CREATE TABLE "+categories+"(Id INT, Name TEXT, Answer TEXT)")  
-                cur.executemany("INSERT INTO "+categories+" VALUES(?, ?, ?)", QuizArr)
+                cur.execute("CREATE TABLE "+categories+"(Subject TEXT, Id INT, Name TEXT, Answer TEXT)")  
+                cur.executemany("INSERT INTO "+categories+" VALUES(?, ?, ?, ?)", QuizArr)
             #print "finished if statement"
             #cur.execute("SELECT * FROM math")
             #print cur.rowcount
