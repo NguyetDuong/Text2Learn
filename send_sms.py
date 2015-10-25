@@ -56,17 +56,25 @@ wotd_defs = wordApi.getDefinitions(wotd)
 wotd_def = wotd_defs[0].text
 
 #contacts hash
-contacts = { 'mimi' : "+14153749191", 'gavin' : '+16507769918',
+#'mimi' : "+14153749191"
+contacts = {'gavin' : '+16507769918',
  'joyce' : "+15306018016", 'brian' : '+14158718763' }
 
 
 #used to send SMS
 def send_SMS_wotd():
 	"""Used to send SMS."""
+	#con = lite.connect('subscribers.db')
+	#con.text_factory = str
+	#cur = con.cursor()
+	#cur.execute("SELECT * FROM Subscribers")
+	#rows = cur.fetchall()
+
+	#for row in rows:
 	for person in contacts:
 		message = client.messages.create(
 	    	body= "Guess the word of the day! Definition: " + wotd_def ,  # Message body, if any
-	    	to= contacts[person],
+	    	to= contacts[person],#str(row[0])
 			from_=base,
 		)
 
