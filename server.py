@@ -47,12 +47,14 @@ def start():
 
 		for row in rows:
 			if str(row[0] == person_number):
-				print("is same")
-				con.close()
-				print("connection closed")
-				return help(person_number)
+				#print(str(row[0]))
+				cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
+				#con.close()
+				#return help(person_number)
+		
 
-
+		for row in rows: 
+			print str(row[0])
 	# return subscribe(body_message, person_number)
 
 @app.route("/help", methods=['GET', 'POST'])
@@ -80,8 +82,10 @@ def subscribe(body_message, person_number):
 		con = lite.connect('subscribers.db')
 		con.text_factory = str
 		cur = con.cursor()
+		print("person_number is:  " + person_number)
+		#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 		cur.execute("INSERT INTO Subscribers VALUES (?);", (person_number,))
-		cur.execute("SELECT * FROM Subscribers")
+		#cur.execute("SELECT * FROM Subscribers")
 		con.commit()
 		con.close()
 	else:
