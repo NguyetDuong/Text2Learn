@@ -155,16 +155,17 @@ def recieve_answer(user, answer):
             cursor.execute("UPDATE account SET MathPoint = ? WHERE UserID = ?", (mPnt,user,))
         checkPnt = checkPnt/100
         level = str(int(math.floor(checkPnt)))
-        #finString ="Congratlations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
+        finString ="Congratlations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
+        level=int(level)
         if level<3:
-            checkUpdate = sID+level
-            level=int(level)
             level=str(level)
+            checkUpdate = sID+level
             #print checkUpdate
             #print lID
+            print "HERE0"
             if lID != checkUpdate:
 		        lvlString = "\nAlso, you have earned enough points to level up to Level "+level+" "+sID+"! Congratlations! Keep it up!"
-        finString = "Congratulations! Your answer of "+answer+" was correct! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
+            finString = "Congratulations! Your answer of "+answer+" was correct! You earned 10 points to the"+sID+" categories! "+lvlString+"\nSend 'check points' to see how many points you earned in total!"
 	    
 	cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (reset,user,))
     cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))
@@ -189,13 +190,13 @@ def check_points(user):
     checkPnt = int(mPnt)
     if checkPnt==MAXPOINTS:
 	    maxxString=" You are at max level for: "
-	    maxString=maxString+'\n math'		
+	    maxString=maxString+'\n Math'		
     cursor.execute("SELECT SpanishPoint FROM account WHERE UserID = ?", (user,))
     sPnt = (''.join(map(str,cursor.fetchone())))
     checkPnt = int(sPnt)
     if checkPnt==MAXPOINTS:
 	    maxxString=" You are at max level for: "
-	    maxString=maxString+'\n spanish'	
+	    maxString=maxString+'\n Spanish'	
     rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points! Keep up the good work!"+maxxString+maxString	
     con.commit()
     con.close()
