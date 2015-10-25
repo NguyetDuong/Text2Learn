@@ -57,8 +57,11 @@ wotd_def = wotd_defs[0].text
 
 #contacts hash
 #'mimi' : "+14153749191"
-contacts = {'gavin' : '+16507769918',
- 'joyce' : "+15306018016", 'brian' : '+14158718763' }
+
+#contacts = {'gavin' : '+16507769918',
+#'joyce' : "+15306018016", 'brian' : '+14158718763', 'leslie': '+14155741183' }
+
+contacts = {'leslie': '+14155741183', }
 
 
 #used to send SMS

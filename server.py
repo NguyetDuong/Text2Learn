@@ -52,42 +52,46 @@ def start():
 		cur = con.cursor()
 		cur.execute("SELECT * FROM Subscribers")
 		rows = cur.fetchall()
+		#print cur.description
 		
+
 		for row in rows:
 			print(str(row[0]))
-			if str(row[0] == person_number):
+
+			if str(row[0]) == person_number:
 				#print(str(row[0]))
 				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
 				return help(person_number)
-		
+	return subscribe(body_message, person_number)
 
 	#### END ####
 
 	"""This is the beginning of redirecting the messages in order for the
 	   user to achieve the correct message."""
 
-	inp_arr = tockenize_string(body_message)
-	type_of_input = user_input_analysis(inp_arr)
-	if type_of_input == "help":
-		return help()
-	elif type_of_input == "learn math":
-		return math_() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
-	elif type_of_input == "learn spanish":
-		return spanish() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
-	elif type_of_input == "answer" and asked_question:
-		return answer() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
-	else:
-		return invalid(person_number)		
-	return subscribe(body_message, person_number)
+	# inp_arr = tockenize_string(body_message)
+	# type_of_input = user_input_analysis(inp_arr)
+	
+	# if type_of_input == "help":
+	# 	return help()
+	# elif type_of_input == "learn math":
+	# 	return math_() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	# elif type_of_input == "learn spanish":
+	# 	return spanish() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	# elif type_of_input == "answer" and asked_question:
+	# 	return answer() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	# else:
+	# 	return invalid(person_number)	
+	
 
 @app.route("/help", methods=['GET', 'POST'])
 def help(person_number):
 	"""Tells the user what to type for which subject to learn."""
 
 	print("went into /help")
-	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." +
-	" To learn math, please reply with: LEARN MATH. To find out more about us and our product, please visit http://goo.gl/Mrp3QK."
+	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." \
+	" To learn math, please reply with: LEARN MATH. To find out more about us and our product, please visit http://goo.gl/Mrp3QK"
 
 	message = client.messages.create(
 			body= automatic_help_reply,
@@ -108,7 +112,6 @@ def subscribe(body_message, person_number):
 	"""Notifies if a person has subscribed or what they should type in order to subscribe."""
 
 	automatic_subscription = "You are now subscribed to " + name + ". To learn the key functions, text HELP back."
-
 	if parseSubscription(body_message):
 		resp = twilio.twiml.Response()
 		resp.message(automatic_subscription)
@@ -127,7 +130,6 @@ def subscribe(body_message, person_number):
 		resp = twilio.twiml.Response()
 		resp.message(errorMessage)
 	return str(resp)
-
 
 send_SMS_wotd() # begins with sending the wotd to everyone
 
