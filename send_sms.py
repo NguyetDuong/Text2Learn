@@ -61,9 +61,9 @@ contacts = { 'mimi' : "+14153749191", 'gavin' : '+16507769918',
 
 
 #used to send SMS
-def send_SMS_wotd():	
+def send_SMS_wotd():
+	"""Used to send SMS."""
 	for person in contacts:
-
 		message = client.messages.create(
 	    	body= "Guess the word of the day! Definition: " + wotd_def ,  # Message body, if any
 	    	to= contacts[person],
@@ -72,13 +72,13 @@ def send_SMS_wotd():
 
 #add received SMS to hash - msg_received
 def get_SMS():
+	"""Add received SMS to hash -- msg_received."""
 	for msg in client.messages.list():
-		
 		#check for incoming sms and add to hash
 		######USED FOR TESTING##########
-		print "\nMSID: " + msg.sid
-		print "body: " + msg.body
-		print "from: " + msg.from_
+		# print "\nMSID: " + msg.sid
+		# print "body: " + msg.body
+		# print "from: " + msg.from_
 		################################
 
 		#delete prev SMS from same sender	
@@ -92,15 +92,15 @@ def get_SMS():
 				#otherwise store in hash
 				msg_received[msg.from_] = msg.body		
 			
-#use to delete received SMS == del prev SMS from same sender
 def delete_rSMS(dsid):
+	"""Used to delete received SMS == delete previous SMS from same senders."""
 	client.messages.delete(dsid)
 	
 
-#use to delete sent SMS
-#WARNING: WILL DELETE ALL SMS WE'VE SENT
-#to delete a specific sms, replace msg.sid with sid of the sms you want to delete
 def delete_sSMS():
+	"""Used to delete sent SMS. WILL DELETE ALL SMS WE'VE SENT.
+	   To delete a specific SMS, replace msg.sid with 
+	   the sid of the sms you want to delete."""
 	for msg in client.messages.list():
 		temp = str(msg.from_)
 		if(temp == base):
@@ -108,12 +108,8 @@ def delete_sSMS():
 
 #print received SMS
 def print_rSMS():
+	"""Print received SMS."""
 	#key = phone #, val = body of msg
 	print "\n"
 	for k in msg_received.keys():
 		print "From: " + k + " Body: " + msg_received[k]
-
-#send_SMS()
-#delete_sSMS()
-#get_SMS()
-#print_rSMS()
