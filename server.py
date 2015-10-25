@@ -36,6 +36,7 @@ def subscribe():
     	cur.execute("DROP TABLE IF EXISTS Subscribers")
     	cur.execute("CREATE TABLE Subscribers(PhoneNumber TEXT")
     	cur.execute("INSERT INTO Subscribers VALUES(?)", person_number)	
+    	con.close()
 		resp.message(automatic_subscription)
 		subscribers.append(person_number)
 	else:
