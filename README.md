@@ -1,8 +1,8 @@
 # Text2Learn
 HackingEdu2015 Submission 
 
-A project created by Leslie Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar. 
-Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn)
+A project created by Huishi (Leslie) Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar, Nguyet Duong. 
+Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn).
 
 ### Images 
 <img src="screenshots/img1.jpg" alt="Drawing" style="width: 20%;"/> 
@@ -12,6 +12,7 @@ Website for the project can be found here: [link](nguyetduong.github.io/Text2Lea
 We are basing our invention off of HackingEDU 2015's theme: education. Our goal is to overcome the barriers of 
 learning by making knowledge more accessible at the tip of anyone's fingertips. We are going back to the basic:
 no more mobile apps, no more native web apps. Just simple SMS messages used to provide people with basic education. 
+Our project will be open source for everyone to contribute to other's learning. 
 
 ### How It Works
 In a simple sense, all we are doing is:
@@ -25,12 +26,17 @@ The program is kept on a server, at the moment on our localhost and we are using
 
 Otherwise we will recognize the number and parse their input into tokens, and direct their message to the appropriate functions. If their input is invalid, we will prompt them to ask for help to see the valid inputs. They can access all of their database information by sending SMSs with the appropriate phrases. 
 
+### Next Steps
+- Let user reply back with their guesses about the word of the day
+- Expand more topics, including computer science
+- Have thorough lesson "slides"
+- Increase difficulty levels
+
 ### Interesting Facts
 - We sent over 1000 SMSs during our testing phase
 - We spent over $200 dollars on transportation and food
 - Our friends were our victims
 - Rosalba almost lost all of her texts for the month
-
 
 ### External Resources Used
 - [Twilio](https://www.twilio.com/api)
