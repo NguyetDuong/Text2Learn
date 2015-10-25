@@ -10,7 +10,7 @@ name = "Text2Learn"
 subscribeMessage = "make it easier"
 errorMessage = "To subscribe, please reply with MAKE IT EASIER"
 
-def parseSubscription(inp):
+def parse_subscription(inp):
 	"""Takes in a String, and will parse it to see if it contains the phrase
 	   to subscribe to our Text2Learn."""
 
@@ -27,17 +27,24 @@ def parseSubscription(inp):
 @app.route("/", methods=['GET', 'POST'])
 def start():
 	"""Break statements -- decide where things should go."""
-	return subscribe()
+	body_message = request.values.get('Body', None)
+	person_number = request.values.get('From', None)
+
+	
+
+	return subscribe(body_message)
 
 @app.route("/subscribe", methods=['GET', 'POST'])
-def subscribe():
+def subscribe(body_message):
 	"""Reads the incoming messages to see who is subscribing."""
 
 	automatic_subscription = "You are now subscribed to " + name + ". To learn the key functions, text HELP back."
 	body_message = request.values.get('Body', None)
-	person_number = request.values.get('From', None)
 
-	if parseSubscription(body_message):
+	if parse_subscription(body_message):
+		
+		# LESLIE EDIT HERE PLS
+
 		resp = twilio.twiml.Response()
 		resp.message(automatic_subscription)
 		
@@ -48,8 +55,8 @@ def subscribe():
 
 	return str(resp)
 
-print "foobar"
-#send_SMS_wotd() # begins with sending the wotd to everyone
+
+send_SMS_wotd() # begins with sending the wotd to everyone
 
 
 
