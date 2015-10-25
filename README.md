@@ -9,7 +9,9 @@ Website for the project can be found here: [link](nguyetduong.github.io/Text2Lea
 <img src="screenshots/img2.jpg" alt="Drawing" style="width: 20%;"/>
 
 ### About Our Invention
-We are basing our invention off of HackingEDU 2015's theme: education. 
+We are basing our invention off of HackingEDU 2015's theme: education. Our goal is to overcome the barriers of 
+learning by making knowledge more accessible at the tip of anyone's fingertips. We are going back to the basic:
+no more mobile apps, no more native web apps. Just simple SMS messages used to provide people with basic education. 
 
 ### API Used
 - [Twilio](https://www.twilio.com/api)

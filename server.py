@@ -67,7 +67,7 @@ def start():
 			print("--------------")
 			if str(row[0]) == person_number:
 				#print(str(row[0]))
-				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
+				#cur.execute("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
 				print("we are checking for txt back")
 				"""This is the beginning of redirecting the messages in order for the
