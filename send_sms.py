@@ -21,12 +21,14 @@ wclient = swagger.ApiClient(apiKey, apiUrl)
 #        phonenumbers.PhoneNumberFormat.E164)
 
 # To find these visit https://www.twilio.com/user/account
-ACCOUNT_SID = "ACc98c7be798532eb3bf9a428f5c152f64"
-AUTH_TOKEN = "f177b7ab10a41be5f6fa9c82d5696f62"
+ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
+AUTH_TOKEN = "be72154f7e25bb7c4fc7421e2cbef3f6"
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
-#our phone
-base = "+16507298318"
+# our phone
+#base = "+16507298318"
+base = "+14152149331"
+
 #hash table of the SMS received
 msg_received = {}
 
@@ -40,19 +42,22 @@ wotd_defs = wordApi.getDefinitions(wotd)
 wotd_def = wotd_defs[0].text
 
 #contacts hash
-contacts = { 'mimi' : "+14153749191", 'sarah': "+18316005752",
- 'joyce' : "+15306018016", 'rosalba' :"+14156120624", 'david' : "+15106913320"}
+contacts = {  'mimi' : "+14153749191", 'david' : "+15106913320", 'gavin' : '+16507769918'}
+
+#'mimi' : "+14153749191", 'sarah': "+18316005752",
+ #'joyce' : "+15306018016", 
 
 
 #used to send SMS
-def send_SMS():	
+def send_SMS_wotd():	
 	for person in contacts:
-
 		message = client.messages.create(
-	    	body= "Guess the word of the day! Definition: " + wotd_def ,  # Message body, if any
-	    	to= contacts[person],
-			from_="+16507298318",
+	    	body = "Guess the word of the day! Definition: " + wotd_def ,  # Message body, if any
+	    	to = contacts[person],
+			from_ = "+14152149331",
 		)
+
+
 
 #add received SMS to hash - msg_received
 def get_SMS():
@@ -97,7 +102,4 @@ def print_rSMS():
 	for k in msg_received.keys():
 		print "From: " + k + " Body: " + msg_received[k]
 
-#send_SMS()
-#delete_sSMS()
-get_SMS()
-print_rSMS()
+
