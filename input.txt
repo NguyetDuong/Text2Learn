@@ -1,17 +1,67 @@
 
-spanish
-What is the cat in Spanish?
-el gato
-What is the bread in Spanish?
-el pan
+spanish0
+What is hello in Spanish?
+hola
+What is good in Spanish?
+buenas
+What is dog in Spanish?
+perro
+How do you say thank you in Spanish?
+gracias
+
+math0
+5+9=?
+14
+35+20=?
+55
+20+73=?
+93
+1+9=?
+10
+80+18=?
+98
+
+spanish1
+Spell out '28' in Spanish!
+veintiocho
+What is bread in Spanish?
+pan
 What is programmer in Spanish?
 programador
 
-math
-5+9=?
-14
+math1
+78-20=?
+58
+200-47=?
+153
+13-10=?
+3
+52-4=?
+48
+289-99=?
+190
+
+spanish2
+What is the verb 'to walk' in Spanish?
+caminar
+What is the verb 'to have' in Spanish?
+hacer
+What is the verb 'to say/tell' in Spanish?
+decir
+What is the verb 'to go' in Spanish?
+ir
+what is the verb 'to see' in Spanish?
+ver
+What is the verv 'to eat' in Spanish?
+comer
+
+math2
+10*12=?
+120
 3*3=?
 9
-8/2=?
-4
+9*8=?
+72
+25*5=?
+125
 

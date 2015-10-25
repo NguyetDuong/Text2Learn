@@ -77,7 +77,7 @@ try:
                     QuizArr[n] =(categories,(n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
                     #print (QuizArr[n])
                 #print quizObject.qArray[n]
-                print categories
+                #print categories
                 #cur.execute('''DROP TABLE IF EXISTS '''+categories)
                 cur.execute("DROP TABLE IF EXISTS "+categories)
                 #print "making table"
@@ -122,10 +122,10 @@ try:
     con.commit()
 
 	#testing
-    cur.execute("SELECT * FROM math")
-    print(cur.fetchall())
-    cur.execute("SELECT * FROM spanish")
-    print(cur.fetchall())
+    #cur.execute("SELECT * FROM math")
+    #print(cur.fetchall())
+    #cur.execute("SELECT * FROM spanish")
+    #print(cur.fetchall())
 
 #Error handling: prints out error location
 except lite.Error, e:
