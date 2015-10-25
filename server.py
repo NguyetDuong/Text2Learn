@@ -2,6 +2,7 @@ from flask import Flask, request, redirect
 from twilio.rest import TwilioRestClient
 from send_sms import send_SMS_wotd
 from word_parsing import tokenize_string, user_input_analysis
+from Account_Management import *
 import twilio.twiml
 import sqlite3 as lite
 import sys
@@ -11,7 +12,7 @@ app = Flask(__name__)
 
 name = "Text2Learn"
 subscribeMessage = "subscribe"
-errorMessage = "To subscribe, please reply with MAKE IT EASIER"
+errorMessage = "To subscribe, please reply with SUBSCRIBE"
 asked_question = False
 
 ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
@@ -57,7 +58,6 @@ def start():
 
 		for row in rows:
 			print(str(row[0]))
-
 			if str(row[0]) == person_number:
 				#print(str(row[0]))
 				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
@@ -126,6 +126,9 @@ def subscribe(body_message, person_number):
 		#cur.execute("SELECT * FROM Subscribers")
 		con.commit()
 		con.close()
+
+		"""Creating a user in the database. Changes made bellow here."""
+		init_subscribe(person_number)
 	else:
 		resp = twilio.twiml.Response()
 		resp.message(errorMessage)

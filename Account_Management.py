@@ -1,5 +1,6 @@
 #Account_Management.py
 #Python file that is in charge of maintaining the user data and changes in the account database
+# user == phone number
 #-------------------------------------------------------------------------------
 #TO USE: Account_Management.METHODS(args)
 #Available Methods:
