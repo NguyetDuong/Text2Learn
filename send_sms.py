@@ -1,8 +1,28 @@
 from twilio.rest import TwilioRestClient
 from wordnik import *
+import sqlite3 as lite
+import sys
+import random
+
 apiUrl = 'http://api.wordnik.com/v4'
 apiKey = '2c2aa817225a9b275e2170c366304d437582c298f11a89644'
 wclient = swagger.ApiClient(apiKey, apiUrl)
+randQ = ""
+
+##################################
+def pick_dbQ():	
+	con = lite.connect('text2learn.db')
+
+	with con:
+		curr = con.cursor()
+		curr.execute("SELECT * FROM spanish")
+		rows = curr.fetchall()
+		ranIndex = random.randint(0,len(rows)-1)
+		randQ = rows[ranIndex][1]
+
+		#Closes connection   
+	
+	con.close() 
 
 #if needed to convert phone # to e164
 #def convert_to_e164(raw_phone):
@@ -100,4 +120,5 @@ def print_rSMS():
 #send_SMS()
 #delete_sSMS()
 get_SMS()
-print_rSMS()
+#print_rSMS()
+pick_dbQ()

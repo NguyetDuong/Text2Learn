@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect
 import twilio.twiml
- 
+import sqlite3 as lite
+import sys
+
 app = Flask(__name__)
 name = "Text2Learn"
 subscribeMessage = "make it easier"
@@ -14,7 +16,6 @@ def parseSubscription(inp):
 	l = inp.lower()
 	l = l.rstrip()
 	l = l.lstrip()
-	
 	b = (l == subscribeMessage)
 	return b
 
@@ -30,6 +31,11 @@ def subscribe():
 	person_number = request.values.get('From', None)
 	if parseSubscription(body_message):
 		resp = twilio.twiml.Response()
+		con = lite.connect('subscribers.db')
+    	cur = con.cursor()
+    	cur.execute("DROP TABLE IF EXISTS Subscribers")
+    	cur.execute("CREATE TABLE Subscribers(PhoneNumber TEXT")
+    	cur.execute("INSERT INTO Subscribers VALUES(?)", person_number)	
 		resp.message(automatic_subscription)
 		subscribers.append(person_number)
 	else:
