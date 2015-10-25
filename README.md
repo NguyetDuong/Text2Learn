@@ -26,12 +26,17 @@ The program is kept on a server, at the moment on our localhost and we are using
 
 Otherwise we will recognize the number and parse their input into tokens, and direct their message to the appropriate functions. If their input is invalid, we will prompt them to ask for help to see the valid inputs. They can access all of their database information by sending SMSs with the appropriate phrases. 
 
+### Next Steps
+- Let user reply back with their guesses about the word of the day
+- Expand more topics, including computer science
+- Have thorough lesson "slides"
+- Increase difficulty levels
+
 ### Interesting Facts
 - We sent over 1000 SMSs during our testing phase
 - We spent over $200 dollars on transportation and food
 - Our friends were our victims
 - Rosalba almost lost all of her texts for the month
-
 
 ### External Resources Used
 - [Twilio](https://www.twilio.com/api)
