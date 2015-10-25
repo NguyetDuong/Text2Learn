@@ -334,6 +334,16 @@ img {
 .img-circle {
   border-radius: 50%;
 }
+.img-resize {
+    border-radius: 50%;
+    width: 150px;
+    height: auto;
+}
+.img-resize1 {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
