@@ -26,4 +26,3 @@ def user_input_analysis(arr):
 		elif arr[1] == "spanish":
 			return "learn spanish"
 	return "invalid"
-
