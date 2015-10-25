@@ -1,7 +1,8 @@
 from flask import Flask, request, redirect
-from flask.ext.sqlalchemy import SQLAlchemy
 from send_sms import send_SMS_wotd
 import twilio.twiml
+import sqlite3 as lite
+import sys
 
  
 app = Flask(__name__)
@@ -10,7 +11,7 @@ name = "Text2Learn"
 subscribeMessage = "make it easier"
 errorMessage = "To subscribe, please reply with MAKE IT EASIER"
 
-def parse_subscription(inp):
+def parseSubscription(inp):
 	"""Takes in a String, and will parse it to see if it contains the phrase
 	   to subscribe to our Text2Learn."""
 
@@ -32,27 +33,27 @@ def start():
 
 	
 
-	return subscribe(body_message)
+	return subscribe(body_message, person_number)
+
 
 @app.route("/subscribe", methods=['GET', 'POST'])
-def subscribe(body_message):
+def subscribe(body_message, person_number):
 	"""Reads the incoming messages to see who is subscribing."""
 
 	automatic_subscription = "You are now subscribed to " + name + ". To learn the key functions, text HELP back."
-	body_message = request.values.get('Body', None)
 
-	if parse_subscription(body_message):
-		
-		# LESLIE EDIT HERE PLS
-
+	if parseSubscription(body_message):
 		resp = twilio.twiml.Response()
 		resp.message(automatic_subscription)
-		
+		con = lite.connect('subscribers.db')
+		cur = con.cursor()
+		cur.execute("INSERT INTO Subscribers VALUES (?);", (person_number,))
+		cur.execute("SELECT * FROM Subscribers")
+		con.commit()
+		con.close()
 	else:
 		resp = twilio.twiml.Response()
 		resp.message(errorMessage)
-	
-
 	return str(resp)
 
 
