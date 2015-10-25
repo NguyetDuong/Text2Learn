@@ -22,7 +22,6 @@ def tokenize_string(s):
 def user_input_analysis(arr):
 	"""Analyzes the user's input message, and decifer what they want to do.
 	   Meaning figuring out which method to direct them to."""
-	# print(arr)
 	if arr[0] == "helpme":
 		return "help"
 	elif arr[0] == "answer":
@@ -41,6 +40,11 @@ def user_input_analysis(arr):
 			return "help"
 		elif arr[1] == "points":
 			return "points"
+	elif arr[0] == "guess":
+		if len(arr) == 1:
+			return "help"
+		else:
+			return "wotd"
 	else:
 		return "input"
 

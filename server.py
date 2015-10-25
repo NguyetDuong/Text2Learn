@@ -3,7 +3,7 @@
 
 from flask import Flask, request, redirect
 from twilio.rest import TwilioRestClient
-from send_sms import send_SMS_wotd
+from send_sms import send_SMS_wotd, get_wotd
 from word_parsing import tokenize_string, user_input_analysis, parseSubscription
 from Account_Management import *
 import twilio.twiml
@@ -67,6 +67,8 @@ def start():
 	   				return answer(person_number, tokens)
 	   			elif translation == "points":
 	   				return points(person_number)
+	   			elif translation == "wotd":
+	   				return wotd(person_number, tokens)
 	   			else:
 	   				return invalid(person_number)
 
@@ -82,6 +84,7 @@ def help(person_number):
 	print("went into /help")
 	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." \
 	" To learn math, please reply with: LEARN MATH. If you wish to know how many points you have, reply with CHECK POINTS." \
+	" If you want to guess the word of the day, reply with GUESS and then your word of the day!" \
 	"To find out more about us and our product, please visit http://goo.gl/Mrp3QK." \
 	"\n\nWhenever answering questions, make sure to begin your reply with ANSWER, then just your answer."
 
@@ -150,6 +153,21 @@ def points(person_number):
 			to = person_number,
 			from_ = acc,
 		)
+
+@app.route("/wotd", methods=['GET', 'POST'])
+def wotd(person_number, msg):
+	print("went into /wotd")
+	if msg[1] == get_wotd():
+		reply = "Correct! " + get_word() + " is the word of the day."
+	else:
+		reply = "Incorrect. Try again!"
+
+	message = client.messages.create(
+			body = reply,
+			to = person_number,
+			from_ = acc,
+		)
+
 
 @app.route("/subscribe", methods=['GET', 'POST'])
 def subscribe(body_message, person_number):

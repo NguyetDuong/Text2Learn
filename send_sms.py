@@ -70,7 +70,7 @@ contacts = {'leslie': '+14155741183', }
 
 #used to send SMS
 def send_SMS_wotd():
-	"""Used to send SMS."""
+	"""Used to send daily SMS for Word of the Day."""
 	con = lite.connect('subscribers.db')
 	con.text_factory = str
 	cur = con.cursor()
@@ -85,6 +85,10 @@ def send_SMS_wotd():
 			from_=base,
 		)
 	con.close()
+
+def get_wotd():
+	"""Returns the word of the day."""
+	return wotd
 
 #add received SMS to hash - msg_received
 def get_SMS():
