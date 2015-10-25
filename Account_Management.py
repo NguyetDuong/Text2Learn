@@ -180,12 +180,23 @@ def recieve_answer(user, answer):
 #----Return: String containing current user point count for each subject
 def check_points(user):
     con = lite.connect('account.db')
-    cursor = con.cursor() 
+    cursor = con.cursor()
+    maxxString=""	
+    maxString=''
+    checkPnt = 0
     cursor.execute("SELECT MathPoint FROM account WHERE UserID = ?", (user,))
     mPnt = (''.join(map(str,cursor.fetchone())))
+    checkPnt = int(mPnt)
+    if checkPnt==MAXPOINTS:
+	    maxxString=" You are at max level for: "
+	    maxString=maxString+'\n math'		
     cursor.execute("SELECT SpanishPoint FROM account WHERE UserID = ?", (user,))
     sPnt = (''.join(map(str,cursor.fetchone())))
-    rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points! Keep up the good work!"	
+    checkPnt = int(sPnt)
+    if checkPnt==MAXPOINTS:
+	    maxxString=" You are at max level for: "
+	    maxString=maxString+'\n spanish'	
+    rString = "You have "+mPnt+" Math Points and "+sPnt+" Spanish Points! Keep up the good work!"+maxxString+maxString	
     con.commit()
     con.close()
     return rString
