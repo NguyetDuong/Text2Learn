@@ -72,7 +72,7 @@ def del_subscribe(user):
 #----Returns: string that contains the problem
 def send_problem(user, subject):
     #init variables 
-	qNum = 0
+    qNum = 0
     maxTable=-1
     sendQ =''
     category ='null'
@@ -122,7 +122,7 @@ def send_problem(user, subject):
 #----Return: String with win/loss condition message
 def recieve_answer(user, answer):
     #init variable
-	finString = "EMPTY STRING"
+    finString = "EMPTY STRING"
     reset = None
     con = lite.connect('account.db')
     cursor = con.cursor() 
@@ -158,7 +158,7 @@ def recieve_answer(user, answer):
             checkPnt = mPnt
             cursor.execute("UPDATE account SET MathPoint = ? WHERE UserID = ?", (mPnt,user,))
         #checks whether user has leveled up
-		checkPnt = checkPnt/100
+        checkPnt = checkPnt/100
         level = str(int(math.floor(checkPnt)))
         finString ="\nCongratulations! Your answer of "+answer+" was correct! You are at the max level for this subject! You won't be able to earn any more points but keep playing to learn some more!\nSend 'check points' to see how many points you earned!"
         level=int(level)
@@ -183,7 +183,7 @@ def recieve_answer(user, answer):
 #----Return: String containing current user point count for each subject
 def check_points(user):
     #init variable
-	con = lite.connect('account.db')
+    con = lite.connect('account.db')
     cursor = con.cursor()
     maxxString=""	
     maxString=''
