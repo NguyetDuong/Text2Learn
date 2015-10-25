@@ -67,19 +67,20 @@ contacts = {'leslie': '+14155741183', }
 #used to send SMS
 def send_SMS_wotd():
 	"""Used to send SMS."""
-	#con = lite.connect('subscribers.db')
-	#con.text_factory = str
-	#cur = con.cursor()
-	#cur.execute("SELECT * FROM Subscribers")
-	#rows = cur.fetchall()
+	con = lite.connect('subscribers.db')
+	con.text_factory = str
+	cur = con.cursor()
+	cur.execute("SELECT * FROM Subscribers")
+	rows = cur.fetchall()
 
-	#for row in rows:
-	for person in contacts:
+	for row in rows:
+	#for person in contacts:
 		message = client.messages.create(
 	    	body= "Guess the word of the day! Definition: " + wotd_def ,  # Message body, if any
-	    	to= contacts[person],#str(row[0])
+	    	to= str(row[0]),#contacts[person],
 			from_=base,
 		)
+	con.close()
 
 #add received SMS to hash - msg_received
 def get_SMS():
