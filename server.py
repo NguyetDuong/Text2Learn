@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect
 from twilio.rest import TwilioRestClient
 from send_sms import send_SMS_wotd
+from word_parsing import tokenize_string, user_input_analysis
 import twilio.twiml
 import sqlite3 as lite
 import sys
@@ -9,12 +10,14 @@ import sys
 app = Flask(__name__)
 
 name = "Text2Learn"
-subscribeMessage = "make it easier"
+subscribeMessage = "subscribe"
 errorMessage = "To subscribe, please reply with MAKE IT EASIER"
+asked_question = False
 
 ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
 AUTH_TOKEN = "be72154f7e25bb7c4fc7421e2cbef3f6"
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+acc = "+14152149331"
 
 
 def parseSubscription(inp):
@@ -38,6 +41,11 @@ def start():
 	person_number = request.values.get('From', None)
 	pnumber = request.values.get('From',None)
 
+
+
+	"""This is to check for duplication of subscribers, and remove them.
+	   It also checks if the person messaging is a new or a returning subscriber."""
+	#### BEGIN ####
 	con = lite.connect('subscribers.db')
 	con.text_factory = str
 	with con:
@@ -55,6 +63,23 @@ def start():
 
 		for row in rows: 
 			print str(row[0])
+	#### END ####
+
+	"""This is the beginning of redirecting the messages in order for the
+	   user to achieve the correct message."""
+
+	inp_arr = tockenize_string(body_message)
+	type_of_input = user_input_analysis(inp_arr)
+	if type_of_input == "help":
+		return help()
+	elif type_of_input == "learn math":
+		return math_() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	elif type_of_input == "learn spanish":
+		return spanish() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	elif type_of_input == "answer" and asked_question:
+		return answer() ## THIS HAS NOT BEEN IMPLEMENTED YET! Comment out if running
+	else:
+		return invalid(person_number)
 	# return subscribe(body_message, person_number)
 
 @app.route("/help", methods=['GET', 'POST'])
@@ -62,13 +87,22 @@ def help(person_number):
 	"""Tells the user what to type for which subject to learn."""
 
 	print("went into /help")
-	automatic_help_reply = "To learn math, type LEARN MATH. To learn Spanish, type LEARN SPANISH."
+	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." +
+	" To learn math, please reply with: LEARN MATH. To find out more about us and our product, please visit http://goo.gl/Mrp3QK."
 
 	message = client.messages.create(
 			body= automatic_help_reply,
 			to= person_number,
-			from_= "+14152149331",
+			from_= acc,
 	)
+@app.route("/invalid", methods=['GET', 'POST'])
+def invalid(person_number):
+	reply = "It seems like you have given an invalid input. Please reply with: HELP for valid inputs."
+	message = client.messages.create(
+			body = reply,
+			to = person_number,
+			from_ = acc,
+		)
 
 @app.route("/subscribe", methods=['GET', 'POST'])
 def subscribe(body_message, person_number):
