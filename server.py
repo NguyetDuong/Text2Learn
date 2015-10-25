@@ -65,6 +65,8 @@ def start():
 	   				return math(person_number)
 	   			elif translation == "guess":
 	   				return answer(person_number, tokens)
+	   			elif translation == "points":
+	   				return points(person_number)
 	   			else:
 	   				return invalid(person_number)
 
@@ -79,7 +81,8 @@ def help(person_number):
 
 	print("went into /help")
 	automatic_help_reply = "Currently we have two different courses: math and Spanish. To learn Spanish, please reply with: LEARN SPANISH." \
-	" To learn math, please reply with: LEARN MATH. To find out more about us and our product, please visit http://goo.gl/Mrp3QK." \
+	" To learn math, please reply with: LEARN MATH. If you wish to know how many points you have, reply with CHECK POINTS." \
+	"To find out more about us and our product, please visit http://goo.gl/Mrp3QK." \
 	"\n\nWhenever answering questions, make sure to begin your reply with ANSWER, then just your answer."
 
 	message = client.messages.create(
@@ -128,6 +131,18 @@ def answer(person_number, guess):
 	print("user answer: " + guess[1])
 	response = recieve_answer(person_number, guess[1])
 	print(response)
+	reply = str(response)
+
+	message = client.messages.create(
+			body = reply,
+			to = person_number,
+			from_ = acc,
+		)
+
+@app.route("/points", methods=['GET', 'POST'])
+def points(person_number):
+	print("went into /points")
+	response = check_points(person_number)
 	reply = str(response)
 
 	message = client.messages.create(

@@ -36,6 +36,11 @@ def user_input_analysis(arr):
 			return "learn spanish"
 		elif len(arr) > 1:
 			return "help"
+	elif arr[0] == "check":
+		if len(arr) == 1:
+			return "help"
+		elif arr[1] == "points":
+			return "points"
 	else:
 		return "input"
 
