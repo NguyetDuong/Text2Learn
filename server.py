@@ -4,12 +4,11 @@
 from flask import Flask, request, redirect
 from twilio.rest import TwilioRestClient
 from send_sms import send_SMS_wotd
-from word_parsing import tokenize_string, user_input_analysis, parseSubscription
+from word_parsing import tokenize_string, user_input_analysis
 from Account_Management import *
 import twilio.twiml
 import sqlite3 as lite
 import sys
-
  
 app = Flask(__name__)
 
@@ -21,6 +20,19 @@ ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
 AUTH_TOKEN = "be72154f7e25bb7c4fc7421e2cbef3f6"
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 acc = "+14152149331"
+
+
+def parseSubscription(inp):
+	"""Takes in a String, and will parse it to see if it contains the phrase
+	   to subscribe to our Text2Learn."""
+
+	l = inp.lower()
+	l = l.rstrip()
+	l = l.lstrip()
+	
+	b = (l == subscribeMessage)
+	return b
+
 
 # App is being run at this point, all variables & methods 
 # not related to app should be above
@@ -49,12 +61,15 @@ def start():
 		print("got into the search")
 
 		for row in rows:
-			print(str(row[0]))
+			print("we are comparing: ")
+			print("p#: " + person_number)
+			print("row data: " +str(row[0]))
+			print("--------------")
 			if str(row[0]) == person_number:
 				#print(str(row[0]))
 				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
-
+				print("we are checking for txt back")
 				"""This is the beginning of redirecting the messages in order for the
 	   			user to achieve the correct message."""
 	   			if translation == "help":
@@ -69,7 +84,9 @@ def start():
 	   				return points(person_number)
 	   			else:
 	   				return invalid(person_number)
-
+	print("where")
+	con.close()
+	print("done yet?")
 	return subscribe(body_message, person_number)
 
 	#### END ####
@@ -178,7 +195,7 @@ def subscribe(body_message, person_number):
 		resp.message(errorMessage)
 	return str(resp)
 
-# send_SMS_wotd() # begins with sending the wotd to everyone
+send_SMS_wotd() # begins with sending the wotd to everyone
 
 if __name__ == "__main__":
     app.run(debug=False)
