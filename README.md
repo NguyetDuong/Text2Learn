@@ -27,7 +27,6 @@ The program is kept on a server, at the moment on our localhost and we are using
 Otherwise we will recognize the number and parse their input into tokens, and direct their message to the appropriate functions. If their input is invalid, we will prompt them to ask for help to see the valid inputs. They can access all of their database information by sending SMSs with the appropriate phrases. 
 
 ### Next Steps
-- Let user reply back with their guesses about the word of the day
 - Expand more topics, including computer science
 - Have thorough lesson "slides"
 - Increase difficulty levels
