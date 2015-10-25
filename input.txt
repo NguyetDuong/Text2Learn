@@ -1,7 +1,7 @@
 
 spanish0
 What is 'zero' in Spanish?
-cero
+zero
 What is 'one' in Spanish?
 uno
 What is 'two' in Spanish?
@@ -9,7 +9,7 @@ dos
 What is 'three' in Spanish?
 tres
 What is 'four' in Spanish?
-cuarto
+cuatro
 What is 'five' in Spanish?
 cinco
 What is 'six' in Spanish?
@@ -41,7 +41,7 @@ hola
 What is 'goodbye' in Spanish?
 adios
 What is 'good' in Spanish?
-buenas
+buenos
 What is 'dog' in Spanish?
 perro
 What is 'cat' in Spanish?
@@ -85,11 +85,11 @@ cien
 What is 'rice' in Spanish?
 arroz
 What is 'hamburger' in Spanish?
-hamburguresa
+hambuguresa
 What is 'egg' in Spanish?
 huevo
 What is 'french fries' in Spanish?
-papas fritas
+papas-fritas
 What is 'grapes' in Spanish?
 uvas
 What is 'apple' in Spanish?
