@@ -1,3 +1,7 @@
+## This is written for intitial testing.
+## Primary offline, used to send messages to all "subscribers."
+## Contributer: Leslie Li
+
 from twilio.rest import TwilioRestClient
 from wordnik import *
 import sqlite3 as lite
