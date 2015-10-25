@@ -41,6 +41,8 @@ def start():
 	body_message = request.values.get('Body', None)
 	person_number = request.values.get('From', None)
 	pnumber = request.values.get('From',None)
+	tokens = tokenize_string(body_message)
+	translation = user_input_analysis(tokens)
 
 
 
@@ -54,7 +56,7 @@ def start():
 		cur.execute("SELECT * FROM Subscribers")
 		rows = cur.fetchall()
 		#print cur.description
-		
+		print("got into the search")
 
 		for row in rows:
 			print(str(row[0]))
@@ -62,7 +64,14 @@ def start():
 				#print(str(row[0]))
 				#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
 				con.close()
-				return help(person_number)
+
+				"""This is the beginning of redirecting the messages in order for the
+	   			user to achieve the correct message."""
+	   			if translation == "help":
+	   				return help(person_number)
+	   			else:
+	   				return invalid(person_number)
+
 	return subscribe(body_message, person_number)
 
 	#### END ####
@@ -70,8 +79,7 @@ def start():
 	"""This is the beginning of redirecting the messages in order for the
 	   user to achieve the correct message."""
 
-	# inp_arr = tockenize_string(body_message)
-	# type_of_input = user_input_analysis(inp_arr)
+	
 	
 	# if type_of_input == "help":
 	# 	return help()
@@ -98,8 +106,10 @@ def help(person_number):
 			to= person_number,
 			from_= acc,
 	)
+
 @app.route("/invalid", methods=['GET', 'POST'])
 def invalid(person_number):
+	print("went into /invalid")
 	reply = "It seems like you have given an invalid input. Please reply with: HELP for valid inputs."
 	message = client.messages.create(
 			body = reply,
@@ -134,7 +144,7 @@ def subscribe(body_message, person_number):
 		resp.message(errorMessage)
 	return str(resp)
 
-send_SMS_wotd() # begins with sending the wotd to everyone
+# send_SMS_wotd() # begins with sending the wotd to everyone
 
 
 

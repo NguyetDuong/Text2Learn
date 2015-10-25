@@ -6,6 +6,7 @@ def tokenize_string(s):
 	s = s.rstrip()
 	s = s.lower()
 	wd = ""
+
 	for l in s:
 		if l == ' ':
 			words.append(wd)
@@ -20,9 +21,12 @@ def user_input_analysis(arr):
 	   Meaning figuring out which method to direct them to."""
 	if arr[0] == "help":
 		return "help"
-	if arr[0] == "learn":
-		if arr[1] == "math":
+	elif arr[0] == "learn":
+		if len(arr) == 1:
+			return "help"
+		elif arr[1] == "math":
 			return "learn math"
 		elif arr[1] == "spanish":
 			return "learn spanish"
-	return "answer"
+	else:
+		return "input"
