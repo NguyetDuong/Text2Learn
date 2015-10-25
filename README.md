@@ -1,7 +1,7 @@
 # Text2Learn
 HackingEdu2015 Submission 
 
-A project created by Leslie Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar. 
+A project created by Huishi (Leslie) Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar, Nguyet Duong. 
 Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn).
 
 ### Images 
