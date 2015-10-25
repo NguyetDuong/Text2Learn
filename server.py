@@ -44,18 +44,16 @@ def start():
 		cur = con.cursor()
 		cur.execute("SELECT * FROM Subscribers")
 		rows = cur.fetchall()
-
-		for row in rows:
-			if str(row[0] == person_number):
-				#print(str(row[0]))
-				cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
-				#con.close()
-				#return help(person_number)
 		
-
-		for row in rows: 
-			print str(row[0])
-	# return subscribe(body_message, person_number)
+		for row in rows:
+			print(str(row[0]))
+			if str(row[0] == person_number):
+				print( "last: " + str(row[0]))
+				#cur.exectue("DELETE FROM Subscribers WHERE PhoneNumber = (?)", person_number)
+				#con.commit()
+				con.close()
+				return help(person_number)				
+	return subscribe(body_message, person_number)
 
 @app.route("/help", methods=['GET', 'POST'])
 def help(person_number):
@@ -83,7 +81,9 @@ def subscribe(body_message, person_number):
 		con.text_factory = str
 		cur = con.cursor()
 		print("person_number is:  " + person_number)
+		#cur.execute("CREATE TABLE Subscribers(subscriber TEXT)")
 		#cur.exectue("DELETE FROM Subscribers WHERE subscriber = (?)", person_number)
+		print("added subscriber")
 		cur.execute("INSERT INTO Subscribers VALUES (?);", (person_number,))
 		#cur.execute("SELECT * FROM Subscribers")
 		con.commit()
