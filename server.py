@@ -152,9 +152,8 @@ def points(person_number):
 
 @app.route("/wotd", methods=['GET', 'POST'])
 def wotd(person_number, msg):
-	print("went into /wotd")
 	if msg[1] == get_wotd():
-		reply = "Correct! " + get_word() + " is the word of the day."
+		reply = "Correct! " + get_wotd().upper() + " is the word of the day."
 	else:
 		reply = "Incorrect. Try again!"
 
@@ -176,7 +175,6 @@ def subscribe(body_message, person_number):
 		con = lite.connect('subscribers.db')
 		con.text_factory = str
 		cur = con.cursor()
-		#cur.execute("CREATE TABLE Subscribers(PhoneNumber TEXT)")
 		cur.execute("INSERT INTO Subscribers VALUES (?);", (person_number,))
 		con.commit()
 		con.close()
