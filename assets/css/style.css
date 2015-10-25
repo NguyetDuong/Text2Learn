@@ -29,17 +29,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    color:#11B674;
+    color:#7C9BAA;
     font-weight: 900;
-    
+    padding-bottom: 10px;
 }
 .text-center {
     text-align: center; 
 }
 
 .main-top-margin {
-     margin-top: 75px;
-     background-color: rgba(73, 151, 250, 0.11);
+    margin-top: 70px;
+    background-color: rgba(73, 151, 250, 0.11);
 }
 .main-low-margin {
      margin-top: 65px;
@@ -114,7 +114,7 @@ p {
     background-size: cover;
     */
     
-    background-color: #a3bfc7;
+    background-color: #A3C2C1;
 
 }
 
@@ -173,7 +173,7 @@ p {
 }
 
 .navbar-inverse {
-	background: #464c53;
+	background: #3D5162;
 
 }
 
