@@ -77,7 +77,7 @@ try:
                     QuizArr[n] =(categories,(n), (quizObject.qArray[n]), (quizObject.aArray[n])) 
                     #print (QuizArr[n])
                 #print quizObject.qArray[n]
-                #print categories
+                print categories
                 #cur.execute('''DROP TABLE IF EXISTS '''+categories)
                 cur.execute("DROP TABLE IF EXISTS "+categories)
                 #print "making table"
@@ -85,7 +85,7 @@ try:
 				#The table holds the question ID, the question itself, and then the answer
 				#in each column. When grabbing data from the database, it should (hopefully!)
 				#have it's datatype already set.
-                cur.execute("CREATE TABLE "+categories+"(Subject TEXT, Id INT, Name TEXT, Answer TEXT)")  
+                cur.execute("CREATE TABLE "+categories+"(Subject TEXT, Id INT, Question TEXT, Answer TEXT)")  
                 cur.executemany("INSERT INTO "+categories+" VALUES(?, ?, ?, ?)", QuizArr)
             #print "finished if statement"
             #cur.execute("SELECT * FROM math")

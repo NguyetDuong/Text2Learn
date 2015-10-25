@@ -1,12 +1,4 @@
 
-math
-5+9=?
-14
-3*3=?
-9
-8/2=?
-4
-
 spanish
 What is the cat in Spanish?
 el gato
@@ -14,4 +6,12 @@ What is the bread in Spanish?
 el pan
 What is programmer in Spanish?
 programador
+
+math
+5+9=?
+14
+3*3=?
+9
+8/2=?
+4
 
