@@ -169,7 +169,8 @@ def recieve_answer(user, answer):
             finString = "Congratulations! Your answer of "+answer+" was correct! You earned 10 more points for the "+sID+" category!"+lvlString+"\nSend 'check points' to see how many points you earned!"
 	    
 	cursor.execute("UPDATE account SET ProblemID = ? WHERE UserID = ?", (reset,user,))
-    cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))	
+    cursor.execute("UPDATE account SET SubjectID = ? WHERE UserID = ?", (reset,user,))
+    cursor.execute("UPDATE account SET LevelID = ? WHERE UserID = ?", (reset,user,))		
     con.commit()
     con.close() 
     c.commit()
