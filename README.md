@@ -1,8 +1,15 @@
 # Text2Learn
 HackingEdu 2015 Submission 
 
+Winner of: **Best Use of Twilio API** and **GlobalCommit: Social Good Award**!
+
 A project created by Huishi (Leslie) Li, Sarah Borland, Rosalba Rodriguez, Joyce Scalettar, Nguyet Duong. 
 Website for the project can be found here: [link](nguyetduong.github.io/Text2Learn).
+
+### Update: November 2, 2015
+At the moment, we plan to continued developing this servive/mobile application. We are currently contacting possible sponsors, and emailing with Twilio to see if we are still able to get support from them! Since the code for this service was hastily created during HackingEDU 2015, we are planning to build from the bottom up again, in order to make it less messy and easier to implement new service on top of it. 
+
+If you wish to help us out, please feel free to reach out to us!
 
 ### Images 
 <img src="screenshots/img1.jpg" alt="Drawing" style="width: 20%;"/> 
@@ -27,9 +34,11 @@ The program is kept on a server, at the moment on our localhost and we are using
 Otherwise we will recognize the number and parse their input into tokens, and direct their message to the appropriate functions. If their input is invalid, we will prompt them to ask for help to see the valid inputs. They can access all of their database information by sending SMSs with the appropriate phrases. 
 
 ### Next Steps
-- Expand more topics, including computer science
-- Have thorough lesson "slides"
-- Increase difficulty levels
+- Rebuild the service so it is easier for others to help make lessons
+- Create lessons
+- Make more readable text messages
+- Expand on more topics
+- Have increasing difficulty levels
 
 ### Interesting Facts
 - We sent over 1000 SMSs during our testing phase
