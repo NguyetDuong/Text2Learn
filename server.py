@@ -16,8 +16,7 @@ name = "Text2Learn"
 subscribeMessage = "subscribe"
 errorMessage = "To subscribe, please reply with SUBSCRIBE"
 
-ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
-AUTH_TOKEN = "be72154f7e25bb7c4fc7421e2cbef3f6"
+
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 acc = "+14152149331"
 
