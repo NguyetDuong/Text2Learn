@@ -11,8 +11,8 @@ apiKey = '2c2aa817225a9b275e2170c366304d437582c298f11a89644'
 wclient = swagger.ApiClient(apiKey, apiUrl)
 
 # To find these visit https://www.twilio.com/user/account
-ACCOUNT_SID = "ACa136b47b25a3e1297d2cdbe8a65dd8ca"
-AUTH_TOKEN = "be72154f7e25bb7c4fc7421e2cbef3f6"
+ACCOUNT_SID = "null"
+AUTH_TOKEN = "null"
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
 #our phone
